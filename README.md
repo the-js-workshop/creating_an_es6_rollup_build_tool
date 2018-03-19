@@ -7,16 +7,7 @@ This README will walk you through the set-up of a ES6 build tool, using Rollup.j
 Get started by opening a terminal in the root directory of this repository.  Run
 ```npm init``` and provide answers at the question prompts.
 
-### Create the Directory Structure
-
-* ```src```
-* ```src\fonts```
-* ```src\img```
-* ```src\js```
-* ```src\libs```
-* ```src\scss```
-
-### Create the Basic Files
+### Create the Directory Structure and Basic Files
 
 * ```src```
 * ```src\fonts\.gitkeep```
@@ -61,7 +52,7 @@ parallel or sequential. [Read more about usage](https://www.npmjs.com/package/np
 
 ```
 
-### Run your script
+### Test your start script
 
 Let's test the script.  From the terminal, run
 
@@ -79,19 +70,50 @@ the npm-run-all module) to run a series of commands in series, i.e.,
 
 Also import to note, you can run custom scripts individually using the ```run```
 command, e.g.,
+
 ```
     $ npm run copy-html
 ```
 
+## Implement a CSS Compiler
+Next we'll add a CSS compiler.  There are a number of options for managing this
+task (LESS, post-css, etc), in this case we'll use the Sass compiler.  In your terminal
+install the Node Sass compiler
 
+```
+    $ npm install node-sass --save-dev
+```
 
-## Implement a File Copier
+Once the compiler is installed modify your start script to call the new script, ***compile-css***
+
+```
+    "start": "run-s create-folders copy-html copy-images  copy-libs copy-fonts compile-css ",
+    "create-folders": "mkdirp build/js build/css build/img build/libs build/fonts",
+    "copy-html": "cpx src/*.html build",
+    "copy-images": "cpx src/img/*.* build/img",
+    "copy-libs": "cpx src/libs/*.* build/libs",
+    "copy-fonts": "cpx src/fonts/*.* build/fonts",
+    "compile-css": "node-sass --output-style compressed --source-map true src/scss/app.scss --output build/css",
+
+```
+
+### Test your start script
+To test the css compiler, add a variable declaration and simple rule to the
+app.scss file:
+
+```
+    $primary-color: #333;
+    h1{
+        color: $primary-color;
+    }
+
+```
+
+Now run the css compiler from your terminal, ``` $ npm run compile-css ```
+
+## Implement Rollup.JS
 
 ## Implement a Dev Server
 
 ## Implment a File Watcher
-
-## Implement a CSS Compiler
-
-## Implement Rollup.JS
 
