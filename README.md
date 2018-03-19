@@ -315,7 +315,7 @@ From your terminal, run
 
 #### The Final Build Script
 
-Your final build script should reseble this
+Your final build script should resemble this.
 
 ```
 {
