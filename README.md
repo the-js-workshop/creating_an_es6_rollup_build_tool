@@ -207,10 +207,51 @@ follow the links below to the npm documentation
 * [babel-plugin-external-helpers](https://www.npmjs.com/package/babel-plugin-external-helpers)
 * [babel-preset-env](https://www.npmjs.com/package/babel-preset-env)
 
-
-
-
 ## Implement a Dev Server
+
+A common function of a good build tool is a development server that will auto-reload
+as files are changed. lite-server works really well in this case, so we'll use that.
+
+### From your terminal install the lite-server module,
+
+```
+    $ npm run --save-dev lite-server
+```
+
+### Create a Config File
+
+Create a config file in the root directory, ```bs-config.json```, and paste this
+configuration into it.
+
+```
+{
+    "port": 8000,
+    "files": [
+        "./build/**/*.html",
+        "./build/**/*.css",
+        "./build/**/*.js"
+    ],
+    "server": { "baseDir": "./build" }
+}
+
+```
+
+### Modify Start Script and Add Serve Script
+
+```
+    "start": "run-s create-folders copy-html copy-images  copy-libs copy-fonts compile-css compile-js serve",
+
+    ...
+
+    "serve": "lite-server -c bs-config.json -w 'build/app.css'",
+```
+
+### Test the Server
+
+```
+    $ npm run serve
+
+```
 
 ## Implment a File Watcher
 
