@@ -255,3 +255,120 @@ configuration into it.
 
 ## Implment a File Watcher
 
+Alright things are shaping up nicely. The server is set to reload when files in the
+```build\``` directory are changes, but we're still missing one important piece, a
+file watcher that will trigger our build scripts when we update our files ```src\```
+directory.  Let's add that piece.
+
+### Install a Watcher Module
+
+From your terminal add the ```watch-cli``` ([Read implementation docs](https://www.npmjs.com/package/watch-cli))
+
+```
+    $ npm install --save-dev watch-cli
+```
+
+### Add Watcher Scripts
+
+While it's very possible to watch for changes in all our directories, I've chosen not
+to watch ```src\img```, ```src\fonts```, or ```src\libs``` as these resources don't
+change very often.  In the case that images are added or new libs included, those
+scripts can be called separately.  In this case we're only going to watch ```.html```,
+```.scss```, and ```.js``` files.
+
+Add these scripts to your package.json file
+
+```
+    "launch": "run-p serve watch:*",
+    "watch": "run-p watch:* ",
+    "watch:html": "watch -p \"src/*.html\" -c \"npm run copy-html\" ",
+    "watch:css": "watch -p \"src/scss/*.scss\" -c \"npm run compile-css\" ",
+    "watch:js": "watch -p \"src/js/**.js\" -c \"npm run compile-js\" "
+```
+
+ Notice the use of the ```run-p``` command.  This is the run-in-parallel
+ command supplied by the npm-run-all module.  Now the launch command will fire the
+ server and the watch scripts in parallel. The watch script in turn fires three
+ separate watchers.
+
+### Update the Start Script
+Make this small change in the start script, calling the launch script instead of
+the serve script.
+
+```
+    "start": "run-s create-folders copy-html copy-images  copy-libs copy-fonts compile-css compile-js launch",
+
+```
+
+### Test your Script
+
+From your terminal, run
+
+```
+    npm start
+
+```
+
+#### The Final Build Script
+
+Your final build script should reseble this
+
+```
+{
+  "name": "es6_rollup_seed",
+  "version": "1.0.0",
+  "description": "an npm build environment that implements rollup.js",
+  "scripts": {
+    "test": "npm run test",
+    "start": "run-s create-folders copy-html copy-images  copy-libs copy-fonts compile-css compile-js launch",
+    "create-folders": "mkdirp build/js build/css build/img build/libs build/fonts",
+    "copy-html": "cpx src/*.html build",
+    "copy-images": "cpx src/img/*.* build/img",
+    "copy-libs": "cpx src/libs/*.* build/libs",
+    "copy-fonts": "cpx src/fonts/*.* build/fonts",
+    "compile-css": "node-sass --output-style compressed --source-map true src/scss/app.scss --output build/css",
+    "compile-js": "rollup -c",
+    "launch": "run-p serve watch:*",
+    "serve": "lite-server -c bs-config.json -w 'build/app.css'",
+    "watch": "run-p watch:* ",
+    "watch:html": "watch -p \"src/*.html\" -c \"npm run copy-html\" ",
+    "watch:css": "watch -p \"src/scss/*.scss\" -c \"npm run compile-css\" ",
+    "watch:js": "watch -p \"src/js/**.js\" -c \"npm run compile-js\" "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/the-js-workshop/creating_an_es6_rollup_build_tool.git"
+  },
+  "keywords": [
+    "rollup",
+    "build",
+    "tool",
+    "npm"
+  ],
+  "author": "Sean Olson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sean-olson/build_environments/issues"
+  },
+  "homepage": "https://github.com/sean-olson/build_environments#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
+    "cpx": "^1.5.0",
+    "lite-server": "^2.3.0",
+    "node-sass": "^4.7.2",
+    "npm-run-all": "^4.1.2",
+    "rollup": "^0.56.5",
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-commonjs": "^9.0.0",
+    "rollup-plugin-node-resolve": "^3.2.0",
+    "rollup-plugin-replace": "^2.0.0",
+    "watch-cli": "^0.2.3"
+  }
+}
+
+
+```
+
+#### Happy Coding
