@@ -1,5 +1,7 @@
 # Creating an ES6 Rollup Build Tool
-This README will walk you through the set-up of a ES6 build tool, using Rollup.js
+This README will walk you through the set-up of an ES6 build tool, using Rollup.js.  This
+does not represent all that's possible with a build tool, but it's a nice seed to get
+you started.
 
 ## Set-Up the Application Environment
 
