@@ -20,12 +20,12 @@ Get started by opening a terminal in the root directory of this repository.  Run
 * ```src\scss\app.scss```
 
 ## Define your Start Script
-npm supports the "scripts" property of the package.json file.  Read more about
-scripts in [npm documentation](https://docs.npmjs.com/misc/scripts).  You can implement
+npm supports the "scripts" property of the package.json file.  (Read more about
+scripts in [npm documentation](https://docs.npmjs.com/misc/scripts).)  You can implement
 scripts using either custom names and built-in ones, e.g., ```start```
 
-We will run our build tool directly from the start script, rather than using build-tool
-platform such as ***Grunt.js*** of ***Gulp.js***.  Will use the ```start``` script to launch the
+We will run our build tool directly from the start script, rather than using a build-tool
+platform such as ***Grunt.js*** of ***Gulp.js***.  We'll use the ```start``` script to fire the
 build process.  Once launched, the ```start``` script will in turn fire a series of
 other scripts to complete the various tasks we need to build and serve our app.
 
@@ -37,7 +37,7 @@ From your terminal window, run,
     $ npm install cpx --save-dev
 ```
 
-These two packages provide the foundation of the builder.
+These two packages will provide the foundation of your builder.
 
 * The ```npm-run-all``` module provides a CLI tool that will run multiple npm-scripts in
 parallel or sequential. [Read more about usage](https://www.npmjs.com/package/npm-run-all).
@@ -55,7 +55,7 @@ parallel or sequential. [Read more about usage](https://www.npmjs.com/package/np
 
 ```
 
-### Test your start script
+### Test your Start Script
 
 Let's test the script.  From the terminal, run
 
@@ -79,6 +79,7 @@ command, e.g.,
 ```
 
 ## Implement a CSS Compiler
+
 Next we'll add a CSS compiler.  There are a number of options for managing this
 task (LESS, post-css, etc), in this case we'll use the Sass compiler.  In your terminal
 install the Node Sass compiler
@@ -87,7 +88,7 @@ install the Node Sass compiler
     $ npm install node-sass --save-dev
 ```
 
-Once the compiler module is installed modify your start script to call the new script, ***compile-css***
+Once the compiler module is installed modify your ```start``` script to call the new script, ***compile-css***
 
 ```
     "start": "run-s create-folders copy-html copy-images  copy-libs copy-fonts compile-css ",
@@ -98,7 +99,7 @@ Once the compiler module is installed modify your start script to call the new s
 
 ```
 
-### Test your start script
+### Test your Start Script
 To test the css compiler, add a variable declaration and simple rule to the
 app.scss file:
 
@@ -295,7 +296,7 @@ Add these scripts to your package.json file
  separate watchers.
 
 ### Update the Start Script
-Make this small change in the start script, calling the launch script instead of
+Make this small change in the ```start``` script, calling the launch script instead of
 the serve script.
 
 ```
@@ -351,9 +352,9 @@ Your final build script should reseble this
   "author": "Sean Olson",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sean-olson/build_environments/issues"
+    "url": "https://github.com/the-js-workshop/creating_an_es6_rollup_build_tool/issues"
   },
-  "homepage": "https://github.com/sean-olson/build_environments#readme",
+  "homepage": "https://github.com/the-js-workshop/creating_an_es6_rollup_build_tool#readme",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-plugin-external-helpers": "^6.22.0",

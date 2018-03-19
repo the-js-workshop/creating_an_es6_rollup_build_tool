@@ -32,9 +32,9 @@
   "author": "Sean Olson",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sean-olson/build_environments/issues"
+    "url": "https://github.com/the-js-workshop/creating_an_es6_rollup_build_tool/issues"
   },
-  "homepage": "https://github.com/sean-olson/build_environments#readme",
+  "homepage": "https://github.com/the-js-workshop/creating_an_es6_rollup_build_tool#readme",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-plugin-external-helpers": "^6.22.0",
