@@ -12,6 +12,7 @@ Get started by opening a terminal in the root directory of this repository.  Run
 ### Create the Directory Structure and Basic Files
 
 * ```src```
+* ```src\index.html```
 * ```src\fonts\.gitkeep```
 * ```src\img\.gitkeep```
 * ```src\js\app.js```
