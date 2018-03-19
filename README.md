@@ -122,7 +122,7 @@ along with its own ```rollup.config.js``` file.
 ### Begin by Installing a Series of npm Modules
 
 ```
-    $ npm install --save-dev [rollup](https://www.npmjs.com/package/babel-core)
+    $ npm install --save-dev rollup
     $ npm install --save-dev rollup-plugin-babel
     $ npm install --save-dev rollup-plugin-commonjs
     $ npm install --save-dev rollup-plugin-node-resolve
@@ -133,6 +133,51 @@ along with its own ```rollup.config.js``` file.
 
 ```
 
+### Add a Rollup Config File
+Add the config file, ```rollup.config.js```, to the root of your directory,
+and paste in this configuration
+
+```
+import babel from 'rollup-plugin-babel';
+import resolve from 'rollup-plugin-node-resolve';
+import commonjs from 'rollup-plugin-commonjs';
+import replace from 'rollup-plugin-replace';
+
+export default {
+    entry: './src/js/app.js',
+    sourceMap: 'inline' ,
+    output: {
+        file: './build/js/app.js',
+        format: 'iife'
+    },
+    plugins: [
+      resolve({
+        jsnext: true,
+        main: true,
+        browser: true
+      }),
+      commonjs(),
+      babel({
+        exclude: 'node_modules/**',
+        babelrc: false,
+        presets: [
+            ["env", {
+                "modules": false,
+                "targets": {
+                    "browsers": ["last 2 versions", "safari >= 7", "ie >= 11"]
+                }
+            }],
+        ],
+        plugins: [
+            'external-helpers'
+        ],
+    }),
+      replace({
+        ENV: JSON.stringify(process.env.NODE_ENV || 'development')
+      })
+    ]
+};
+```
 
 
 ## Implement a Dev Server

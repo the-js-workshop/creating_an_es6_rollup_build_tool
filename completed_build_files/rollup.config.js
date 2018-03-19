@@ -11,17 +11,29 @@ export default {
         format: 'iife'
     },
     plugins: [
-      resolve({
-        jsnext: true,
-        main: true,
-        browser: true
-      }),
-      commonjs(),
-      babel({
-        exclude: 'node_modules/**',
-      }),
-      replace({
-        ENV: JSON.stringify(process.env.NODE_ENV || 'development')
-      })    
+        resolve({
+            jsnext: true,
+            main: true,
+            browser: true
+        }),
+        commonjs(),
+        babel({
+            exclude: 'node_modules/**',
+            babelrc: false,
+            presets: [
+                ["env", {
+                    "modules": false,
+                    "targets": {
+                        "browsers": ["last 2 versions", "safari >= 7", "ie >= 11"]
+                    }
+                }],
+            ],
+            plugins: [
+                'external-helpers'
+            ],
+        }),
+        replace({
+            ENV: JSON.stringify(process.env.NODE_ENV || 'development')
+        })
     ]
 };

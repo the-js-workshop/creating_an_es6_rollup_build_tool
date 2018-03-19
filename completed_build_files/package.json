@@ -22,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sean-olson/build_environments.git"
+    "url": "git+https://github.com/the-js-workshop/creating_an_es6_rollup_build_tool.git"
   },
   "keywords": [
     "rollup",
