@@ -38,7 +38,8 @@
   "homepage": "https://github.com/sean-olson/build_environments#readme",
   "devDependencies": {
     "babel-core": "^6.26.0",
-    "babel-preset-es2015-rollup": "^3.0.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
     "cpx": "^1.5.0",
     "lite-server": "^2.3.0",
     "node-sass": "^4.7.2",

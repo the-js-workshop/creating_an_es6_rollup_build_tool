@@ -109,9 +109,31 @@ app.scss file:
 
 ```
 
-Now run the css compiler from your terminal, ``` $ npm run compile-css ```
+Now run the css compiler from your terminal, ``` $ npm run compile-css ```.  Now
+open check the ```build\css\``` directory for the app.css file.  Open it to verify
+that the Sass file has been properly compiled.
 
 ## Implement Rollup.JS
+Rollup.js provides powerful transpiling functionality that allows you to write code
+using ES6 module syntax, the most recent JavaScript features, and the ability to import
+npm code modules. Rollup leverages Babel and requires a number of plugins to function,
+along with its own ```rollup.config.js``` file.
+
+### Begin by Installing a Series of npm Modules
+
+```
+    $ npm install --save-dev [rollup](https://www.npmjs.com/package/babel-core)
+    $ npm install --save-dev rollup-plugin-babel
+    $ npm install --save-dev rollup-plugin-commonjs
+    $ npm install --save-dev rollup-plugin-node-resolve
+    $ npm install --save-dev rollup-plugin-replace
+    $ npm install --save-dev babel-core
+    $ npm install --save-dev babel-plugin-external-helpers
+    $ npm install --save-dev babel-preset-env
+
+```
+
+
 
 ## Implement a Dev Server
 
