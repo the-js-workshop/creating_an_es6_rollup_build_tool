@@ -84,15 +84,13 @@ install the Node Sass compiler
     $ npm install node-sass --save-dev
 ```
 
-Once the compiler is installed modify your start script to call the new script, ***compile-css***
+Once the compiler module is installed modify your start script to call the new script, ***compile-css***
 
 ```
     "start": "run-s create-folders copy-html copy-images  copy-libs copy-fonts compile-css ",
-    "create-folders": "mkdirp build/js build/css build/img build/libs build/fonts",
-    "copy-html": "cpx src/*.html build",
-    "copy-images": "cpx src/img/*.* build/img",
-    "copy-libs": "cpx src/libs/*.* build/libs",
-    "copy-fonts": "cpx src/fonts/*.* build/fonts",
+
+    ...
+
     "compile-css": "node-sass --output-style compressed --source-map true src/scss/app.scss --output build/css",
 
 ```
@@ -119,7 +117,7 @@ using ES6 module syntax, the most recent JavaScript features, and the ability to
 npm code modules. Rollup leverages Babel and requires a number of plugins to function,
 along with its own ```rollup.config.js``` file.
 
-### Begin by Installing a Series of npm Modules
+### Install a Bunch of Modules
 
 ```
     $ npm install --save-dev rollup
@@ -178,6 +176,38 @@ export default {
     ]
 };
 ```
+
+### Update Start Script and Add JS Compile Script
+
+```
+    "start": "run-s create-folders copy-html copy-images  copy-libs copy-fonts compile-css compile-js ",
+
+    ...
+
+    "compile-js": "rollup -c"
+
+```
+
+### Test your Rollup Compiler
+
+1. Create JavaScript some code files in the ```src\js``` directory, or just
+add the JavaScript files from the ```docs\snippets``` folder.
+2. From your terminal run the JavaScript compile script, ``` $ npm run compile-js ```.
+3. Check the directory in the ```build\js``` directory to see the transpiled code.
+
+To learn more about each of these modules and the functionality they provide
+follow the links below to the npm documentation
+
+* [rollup](https://www.npmjs.com/package/rollup)
+* [rollup-plugin-babel](https://www.npmjs.com/package/rollup-plugin-babel)
+* [rollup-plugin-commonjs](https://www.npmjs.com/package/rollup-plugin-commonjs)
+* [rollup-plugin-node-resolve](https://www.npmjs.com/package/rollup-plugin-node-resolve)
+* [rollup-plugin-replace](https://www.npmjs.com/package/rollup-plugin-replace)
+* [babel-core](https://www.npmjs.com/package/babel-core)
+* [babel-plugin-external-helpers](https://www.npmjs.com/package/babel-plugin-external-helpers)
+* [babel-preset-env](https://www.npmjs.com/package/babel-preset-env)
+
+
 
 
 ## Implement a Dev Server
