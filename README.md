@@ -287,7 +287,7 @@ Add these scripts to your package.json file
     "watch": "run-p watch:* ",
     "watch:html": "watch -p \"src/*.html\" -c \"npm run copy-html\" ",
     "watch:css": "watch -p \"src/scss/*.scss\" -c \"npm run compile-css\" ",
-    "watch:js": "watch -p \"src/js/**.js\" -c \"npm run compile-js\" "
+    "watch:js": "watch -p \"src/js/**/*.js\" -c \"npm run compile-js\" "
 ```
 
  Notice the use of the ```run-p``` command.  This is the run-in-parallel
