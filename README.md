@@ -337,7 +337,7 @@ Your final build script should resemble this.
     "watch": "run-p watch:* ",
     "watch:html": "watch -p \"src/*.html\" -c \"npm run copy-html\" ",
     "watch:css": "watch -p \"src/scss/*.scss\" -c \"npm run compile-css\" ",
-    "watch:js": "watch -p \"src/js/**.js\" -c \"npm run compile-js\" "
+    "watch:js": "watch -p \"src/js/**/*.js\" -c \"npm run compile-js\" "
   },
   "repository": {
     "type": "git",
